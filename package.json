@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build:backend": "npm run --prefix backend build",
-    "develop:backend": "npm run --prefix backend start:dev"
+    "develop:backend": "npm run --prefix backend start:dev",
+    "develop:frontend": "npm run --prefix frontend start"
   }
 }

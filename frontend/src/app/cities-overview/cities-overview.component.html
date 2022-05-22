@@ -1,0 +1,7 @@
+<ng-container *ngIf='(cities$ | async) as cities; else loadingTemplate'>
+    <pre>{{ cities | json }}</pre>
+</ng-container>
+
+<ng-template #loadingTemplate>
+    LOADING
+</ng-template>
