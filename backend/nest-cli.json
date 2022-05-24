@@ -7,6 +7,10 @@
       {
         "include": "**/*.json",
         "outDir": "./dist"
+      },
+      {
+        "include": "**/*.jpeg",
+        "outDir": "./dist"
       }
     ]
   }

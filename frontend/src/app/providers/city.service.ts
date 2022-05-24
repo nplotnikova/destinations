@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { City } from '@models/city';
+import { City, CityShortInfo } from '@models/city';
 
 import { Observable } from 'rxjs';
 
@@ -16,8 +16,8 @@ export class CityService {
     constructor(private http: HttpClient) {
     }
 
-    public getAll(): Observable<City[]> {
-        return this.http.get<City[]>(this.CITIES_URL);
+    public getAll(): Observable<CityShortInfo[]> {
+        return this.http.get<CityShortInfo[]>(this.CITIES_URL);
     }
 
     public getOne(name: string): Observable<City> {

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { City } from '@models/city';
 
@@ -7,22 +8,28 @@ import { CityService } from '@providers/city.service';
 import { finalize, Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-cities-overview',
-    templateUrl: './cities-overview.component.html',
-    styleUrls: ['./cities-overview.component.scss'],
+    selector: 'app-city-insights',
+    templateUrl: './city-insights.component.html',
+    styleUrls: ['./city-insights.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CitiesOverviewComponent implements OnInit {
+export class CityInsightsComponent implements OnInit {
 
-    public cities$!: Observable<City[]>;
+    public city$!: Observable<City>;
     public loading!: boolean;
 
-    constructor(private cityService: CityService,
+    constructor(private route: ActivatedRoute,
+                private cityService: CityService,
                 private _cdr: ChangeDetectorRef) {}
 
     ngOnInit(): void {
+        const name = this.route.snapshot.paramMap.get('name');
+        if (!name) {
+            return;
+        }
+
         this.loading = true;
-        this.cities$ = this.cityService.getAll().pipe(
+        this.city$ = this.cityService.getOne(name).pipe(
             finalize(() => {
                 this.loading = false;
                 this._cdr.markForCheck();

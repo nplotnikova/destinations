@@ -1,0 +1,9 @@
+<ng-container *ngIf="(city$ | async) as city; else loadingTemplate">
+    <pre>{{ city | json }}</pre>
+</ng-container>
+
+<ng-template #loadingTemplate>
+    <div class="d-flex justify-content-center my-3">
+        <div class="spinner-border" role="status"></div>
+    </div>
+</ng-template>

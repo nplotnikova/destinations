@@ -1,11 +1,16 @@
 export interface City {
-    name: string;
-    name_native: string;
-    country: string;
     continent: string;
-    latitude: string;
-    longitude: string;
-    population: string;
+    country: string;
     founded: string;
     landmarks: string[];
+    latitude: number;
+    longitude: number;
+    name_native: string;
+    population: number;
+
+    name: string;
+    image: string;
 }
+
+export type CityShortInfo = Pick<City, 'name' | 'image'>
+

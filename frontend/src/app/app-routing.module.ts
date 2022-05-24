@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CityInsightsComponent } from '@app/city-insights/city-insights.component';
 
-import { CitiesOverviewComponent } from '@app/cities-overview/cities-overview.component';
-import { CityComponent } from '@app/city/city.component';
-import { NotFoundComponent } from '@app/not-found/not-found.component';
+import { CityListComponent } from '@app/city-list/city-list.component';
+import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: CitiesOverviewComponent,
+        component: CityListComponent,
     },
     {
         path: 'city',
@@ -20,13 +20,13 @@ const routes: Routes = [
             },
             {
                 path: ':name',
-                component: CityComponent,
+                component: CityInsightsComponent,
             },
         ],
     },
     {
         path: '**',
-        component: NotFoundComponent,
+        component: PageNotFoundComponent,
     },
 ];
 

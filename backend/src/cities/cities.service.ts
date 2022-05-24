@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
+import { join } from 'path';
 import { CitiesResponse } from './entities/cities-response.entity';
 import { City } from './entities/city.entity';
 
 @Injectable()
 export class CitiesService {
-    private readonly SOURCE_FILE = `${__dirname}/sources/cities.json`;
+    private readonly SOURCE_FILE = join(__dirname, '/sources/cities.json');
 
     // create(createCityDto: CreateCityDto) {
     //     return 'This action adds a new city';
@@ -41,6 +42,6 @@ export class CitiesService {
             throw Error(`Unexpected structure of the source file`);
         }
 
-        return citiesResponse.cities;
+        return citiesResponse.cities?.map((city) => City.fromRawObject(city));
     }
 }

@@ -1,0 +1,21 @@
+<ng-container *ngIf="(cities$ | async) as cities; else loading">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div *ngFor="let city of cities; let idx = index">
+            <div class="card hover-zoom mb-sm-4 mb-2 aspect-ratio-box">
+                <img [src]="city.image" class="card-img aspect-ratio-img" [alt]="city.name" [title]="city.name">
+                <div class="card-img-overlay">
+                    <div class="bg-opacity-75 bg-light py-3 card-title-wrapper">
+                        <h5 class="card-title fw-bold">{{ city.name }}</h5>
+                    </div>
+                    <a class="card-link stretched-link" [routerLink]="['city', city.name]"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #loading>
+    <div class="d-flex justify-content-center my-3">
+        <div class="spinner-border" role="status"></div>
+    </div>
+</ng-template>

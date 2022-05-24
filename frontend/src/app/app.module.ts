@@ -2,24 +2,30 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
-import { CitiesOverviewComponent } from '@app/cities-overview/cities-overview.component';
-import { CityComponent } from '@app/city/city.component';
-import { NotFoundComponent } from '@app/not-found/not-found.component';
+import { CityInsightsComponent } from '@app/city-insights/city-insights.component';
+import { CityListComponent } from '@app/city-list/city-list.component';
+import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.component';
+import { SharedModule } from '@app/shared/shared.module';
+
 
 @NgModule({
     declarations: [
         AppComponent,
-        CityComponent,
-        CitiesOverviewComponent,
-        NotFoundComponent,
+
+        CityInsightsComponent,
+        CityListComponent,
+        PageNotFoundComponent,
     ],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
         CommonModule,
+        SharedModule,
         HttpClientModule,
     ],
     providers: [],

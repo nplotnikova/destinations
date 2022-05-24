@@ -1,5 +1,6 @@
-import { Controller, Get, Param, NotFoundException } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
 import { CitiesService } from './cities.service';
+import { City } from './entities/city.entity';
 
 @Controller('api/cities')
 export class CitiesController {
@@ -12,7 +13,7 @@ export class CitiesController {
 
     @Get()
     findAll() {
-        return this.citiesService.findAll();
+        return this.citiesService.findAll()?.map((city: City) => city.shortInfo);
     }
 
     @Get(':name')
@@ -24,6 +25,16 @@ export class CitiesController {
 
         return city;
     }
+
+    // @Get(':name/picture')
+    // findPicture(@Param('name') name: string) {
+    //     const city = this.citiesService.findOne(name);
+    //     if (!city) {
+    //         throw new NotFoundException(`City ${name} could not be found`);
+    //     }
+    //
+    //     return ;
+    // }
 
     // @Patch(':id')
     // update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
