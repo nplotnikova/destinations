@@ -8,6 +8,9 @@
             "@app/*": [
                 "src/app/*"
             ],
+            "@envs/*": [
+                "src/environments/*"
+            ],
             "@models/*": [
                 "src/app/models/*"
             ],

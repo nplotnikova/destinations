@@ -1,0 +1,8 @@
+<google-map *ngIf="googleMapService.isLoaded$ | async"
+            height="500px" width="100%"
+            (mapInitialized)="addMarkers($event)"
+            [options]="options">
+    <ng-container *ngIf="(markers$ | async) as markers">
+        <map-marker *ngFor="let marker of markers" [options]="marker"></map-marker>
+    </ng-container>
+</google-map>

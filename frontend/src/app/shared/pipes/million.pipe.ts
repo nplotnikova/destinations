@@ -9,6 +9,6 @@ export class MillionPipe implements PipeTransform {
         if (!value) {
             return '';
         }
-        return formatNumber(value / Math.pow(10, 6), 'en', `1.${decimals}-${decimals}`) + ' Mio.';
+        return formatNumber(value / Math.pow(10, 6), 'en', `1.${decimals}-${decimals}`);
     }
 }

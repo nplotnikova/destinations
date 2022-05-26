@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CityInsightsComponent } from '@app/city-insights/city-insights.component';
+import { Routes } from '@angular/router';
 
 import { CityListComponent } from '@app/city-list/city-list.component';
 import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.component';
 
-const routes: Routes = [
+export const ModuleRoutes: Routes = [
     {
         path: '',
         component: CityListComponent,
@@ -20,7 +18,7 @@ const routes: Routes = [
             },
             {
                 path: ':name',
-                component: CityInsightsComponent,
+                loadChildren: () => import('@app/city-insights/city-insights.module').then(m => m.CityInsightsModule),
             },
         ],
     },
@@ -29,10 +27,3 @@ const routes: Routes = [
         component: PageNotFoundComponent,
     },
 ];
-
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-})
-export class AppRoutingModule {
-}

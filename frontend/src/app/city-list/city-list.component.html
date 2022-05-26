@@ -1,3 +1,7 @@
+<div class="py-5 text-center">
+    <h1 class="mb-3">Choose your next trip</h1>
+</div>
+
 <ng-container *ngIf="(cities$ | async) as cities; else loading">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         <div *ngFor="let city of cities; let idx = index">
