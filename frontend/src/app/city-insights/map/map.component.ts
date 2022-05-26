@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
 
 import { GoogleMapService } from '@providers/google-map.service';
 
-import { finalize, map, Observable, Subject, zip } from 'rxjs';
+import { filter, finalize, Observable, Subject, zip } from 'rxjs';
 
 @Component({
     selector: 'app-map',
@@ -11,6 +11,10 @@ import { finalize, map, Observable, Subject, zip } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent implements OnInit {
+
+    private readonly ZOOM = 12;
+    private readonly MIN_ZOOM = 10;
+    private readonly MAX_ZOOM = 16;
 
     @Input() public lat!: number;
     @Input() public lng!: number;
@@ -24,18 +28,13 @@ export class MapComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.options = this._options;
-    }
-
-    private get _options(): google.maps.MapOptions {
-        return {
+        this.options = {
             scrollwheel: false,
             disableDoubleClickZoom: true,
             center: { lat: this.lat || 0, lng: this.lng || 0 },
-            zoom: 12,
-            tilt: 45,
-            maxZoom: 16,
-            minZoom: 10,
+            zoom: this.ZOOM,
+            maxZoom: this.MAX_ZOOM,
+            minZoom: this.MIN_ZOOM,
         };
     }
 
@@ -44,13 +43,13 @@ export class MapComponent implements OnInit {
             return;
         }
 
-        const landmarks$: Observable<google.maps.MarkerOptions>[] = this.landmarks
+        const markers$: Observable<google.maps.MarkerOptions>[] = this.landmarks
             .filter(Boolean)
             .map(landmarkName => this.getMarker(mapRef, landmarkName));
 
-        this.markers$ = zip(landmarks$).pipe(
+        this.markers$ = zip(markers$).pipe(
+            filter(Boolean),
             finalize(() => this._cdr.detectChanges()),
-            map(markers => markers.filter(Boolean)),
         );
     }
 
@@ -69,7 +68,7 @@ export class MapComponent implements OnInit {
     };
 
     private getMarker(map: google.maps.Map, landmarkName: string): Subject<google.maps.MarkerOptions> {
-        const landmark$ = new Subject<google.maps.MarkerOptions>();
+        const marker$ = new Subject<google.maps.MarkerOptions>();
 
         (new google.maps.places.PlacesService(map)).textSearch(
             { query: landmarkName },
@@ -78,12 +77,11 @@ export class MapComponent implements OnInit {
                 status: google.maps.places.PlacesServiceStatus,
             ) => {
                 if (status === google.maps.places.PlacesServiceStatus.OK && places?.length) {
-                    landmark$.next(this.createMarker(places[0]));
+                    marker$.next(this.createMarker(places[0]));
                 }
-
-                landmark$.complete();
+                marker$.complete();
             });
 
-        return landmark$;
+        return marker$;
     }
 }
