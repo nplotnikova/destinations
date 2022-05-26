@@ -8,21 +8,22 @@ import { RouterModule } from '@angular/router';
 import { ModuleRoutes } from '@app/app-routing.config';
 import { AppComponent } from '@app/app.component';
 import { CityListComponent } from '@app/city-list/city-list.component';
-import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.component';
-import { SharedModule } from '@app/shared/shared.module';
+
+import { CoreModule } from '@core/core.module';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         CityListComponent,
-        PageNotFoundComponent,
     ],
     imports: [
         RouterModule.forRoot(ModuleRoutes),
         BrowserAnimationsModule,
         BrowserModule,
         CommonModule,
+        CoreModule,
         SharedModule,
 
         HttpClientModule,

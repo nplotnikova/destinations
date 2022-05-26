@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { City } from '@models/city';
 
 import { CityService } from '@providers/city.service';
 
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 
 @Component({
     selector: 'app-city-insights',
@@ -18,6 +18,7 @@ export class CityInsightsComponent implements OnInit {
     public city$!: Observable<City>;
 
     constructor(private route: ActivatedRoute,
+                private router: Router,
                 private cityService: CityService) {}
 
     ngOnInit(): void {
@@ -26,6 +27,11 @@ export class CityInsightsComponent implements OnInit {
             return;
         }
 
-        this.city$ = this.cityService.getOne(name);
+        this.city$ = this.cityService.getOne(name).pipe(
+            catchError(() => {
+                this.router.navigate(['404'], { skipLocationChange: true }).then();
+                throw new Error(`City ${name} not found.`);
+            }),
+        );
     }
 }

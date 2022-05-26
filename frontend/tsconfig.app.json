@@ -8,6 +8,9 @@
             "@app/*": [
                 "src/app/*"
             ],
+            "@core/*": [
+                "src/app/core/*"
+            ],
             "@envs/*": [
                 "src/environments/*"
             ],
@@ -16,6 +19,9 @@
             ],
             "@providers/*": [
                 "src/app/providers/*"
+            ],
+            "@shared/*": [
+                "src/app/shared/*"
             ]
         }
     },
