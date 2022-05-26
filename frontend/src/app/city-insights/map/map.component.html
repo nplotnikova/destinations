@@ -3,6 +3,13 @@
             (mapInitialized)="addMarkers($event)"
             [options]="options">
     <ng-container *ngIf="(markers$ | async) as markers">
-        <map-marker *ngFor="let marker of markers" [options]="marker"></map-marker>
+        <map-marker #markerRef="mapMarker"
+                    *ngFor="let marker of markers"
+                    [options]="marker"
+                    (mapClick)="showMarkerInfo(markerRef)">
+        </map-marker>
+        <map-info-window>
+            <div class="poi-info-window gm-style" [innerHTML]="'📍 ' + infoWindowText"></div>
+        </map-info-window>
     </ng-container>
 </google-map>

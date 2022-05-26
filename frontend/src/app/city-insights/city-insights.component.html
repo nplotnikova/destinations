@@ -3,22 +3,21 @@
 
     <div class="card mb-3">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img [src]="city.image" class="img-fluid rounded-start" [alt]="city.name" [title]="city.name">
+            <div class="col-lg-6 col-xl-4">
+                <img [src]="city.image" class="img-fluid" id="city-image"
+                     [alt]="city.name" [title]="city.name">
             </div>
-            <div class="col-md-8">
+            <div class="col-lg-6 col-xl-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ city.name_native }}</h5>
                     <p class="card-text">
-                        is the city in {{ city.country }}.
-                        It was founded in {{ city.founded }} and has almost
-                        {{ city.population | million }} million inhabitants.
+                        <b>{{ city.name }} ({{ city.name_native }})</b> is the city in <b>{{ city.country }}</b>.<br>
+                        It was founded in <b>{{ city.founded }}</b> and has around
+                        <b>{{ city.population | million }}</b> million inhabitants.
                     </p>
-<!--                    <p class="card-text">-->
-<!--                        <small class="text-muted">-->
-<!--                         lorem ipsum-->
-<!--                        </small>-->
-<!--                    </p>-->
+                    <p class="card-text"><b>Hint:</b> don't forget to visit most popular places:</p>
+                    <ul id="landmark-list">
+                        <li *ngFor="let landmark of city.landmarks">{{ landmark }}</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -28,7 +27,6 @@
              [lng]="city.longitude"
              [landmarks]="city.landmarks">
     </app-map>
-
 </ng-container>
 
 <ng-template #loadingTemplate>
