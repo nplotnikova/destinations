@@ -5,7 +5,7 @@ import { City } from '@models/city';
 
 import { CityService } from '@providers/city.service';
 
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 @Component({
     selector: 'app-city-insights',
@@ -28,9 +28,10 @@ export class CityInsightsComponent implements OnInit {
         }
 
         this.city$ = this.cityService.getOne(name).pipe(
-            catchError(() => {
+            catchError(error => {
                 this.router.navigate(['404'], { skipLocationChange: true }).then();
-                throw new Error(`City ${name} not found.`);
+                console.error(`City ${name} not found.`);
+                return of(error);
             }),
         );
     }

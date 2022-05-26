@@ -10,7 +10,6 @@ import { AppComponent } from '@app/app.component';
 import { CityListComponent } from '@app/city-list/city-list.component';
 
 import { CoreModule } from '@core/core.module';
-import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -24,7 +23,6 @@ import { SharedModule } from '@shared/shared.module';
         BrowserModule,
         CommonModule,
         CoreModule,
-        SharedModule,
 
         HttpClientModule,
         HttpClientJsonpModule,

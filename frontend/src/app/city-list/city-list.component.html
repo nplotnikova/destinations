@@ -3,7 +3,7 @@
 </div>
 
 <ng-container *ngIf="(cities$ | async) as cities; else loading">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3" *ngIf="cities?.length; else noDataTemplate">
         <div *ngFor="let city of cities; let idx = index">
             <div class="card hover-zoom mb-sm-4 mb-2 aspect-ratio-box">
                 <img [src]="city.image" class="card-img aspect-ratio-img" [alt]="city.name" [title]="city.name">
@@ -21,5 +21,13 @@
 <ng-template #loading>
     <div class="d-flex justify-content-center my-3">
         <div class="spinner-border" role="status"></div>
+    </div>
+</ng-template>
+
+<ng-template #noDataTemplate>
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-warning w-50">
+            There are no cities to display.
+        </div>
     </div>
 </ng-template>
