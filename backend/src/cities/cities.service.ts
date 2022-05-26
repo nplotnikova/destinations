@@ -8,26 +8,18 @@ import { City } from './entities/city.entity';
 export class CitiesService {
     private readonly SOURCE_FILE = join(__dirname, '/sources/cities.json');
 
-    // create(createCityDto: CreateCityDto) {
-    //     return 'This action adds a new city';
-    // }
-
     findAll() {
         return this.fromFile;
     }
 
     findOne(name: string) {
+        if (!name) {
+            throw Error('City name is not provided');
+        }
+
         const cities = this.findAll();
         return cities?.find((city: City) => city.name.toLowerCase() === name.toLowerCase());
     }
-
-    // update(id: number, updateCityDto: UpdateCityDto) {
-    //     return `This action updates a #${id} city`;
-    // }
-    //
-    // remove(id: number) {
-    //     return `This action removes a #${id} city`;
-    // }
 
     private get fromFile(): City[] {
         let citiesResponse: CitiesResponse;

@@ -9,8 +9,7 @@ describe('PageNotFoundComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [PageNotFoundComponent],
-        })
-            .compileComponents();
+        }).compileComponents();
     });
 
     beforeEach(() => {
@@ -21,5 +20,13 @@ describe('PageNotFoundComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    describe('headline', () => {
+        it('should be equal to 404', () => {
+            const compiled = fixture.nativeElement as HTMLElement;
+            const headline = compiled.querySelector('h1');
+            expect(headline?.textContent).toEqual('404');
+        });
     });
 });

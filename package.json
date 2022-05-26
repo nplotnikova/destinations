@@ -4,7 +4,10 @@
   "scripts": {
     "develop:backend": "npm run --prefix backend build && npm run --prefix backend start:dev",
     "develop:frontend": "npm run --prefix frontend start",
-    "develop": "npm-run-all -l -p develop:*"
+    "develop": "npm-run-all -l -p develop:*",
+    "install-dependencies:backend": "npm ci --prefix backend",
+    "install-dependencies:frontend": "npm ci --prefix frontend",
+    "install-dependencies": "npm-run-all -l -p install-dependencies:*"
   },
   "dependencies": {
     "npm-run-all": "4.1.5"

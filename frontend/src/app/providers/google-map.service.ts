@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { environment } from '@envs/environment';
-
 import { catchError, map, Observable, of, shareReplay } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root',

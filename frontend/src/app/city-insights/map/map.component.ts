@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
-
-import { GoogleMapService } from '@providers/google-map.service';
-
 import { filter, finalize, Observable, Subject, zip } from 'rxjs';
+import { GoogleMapService } from '../../providers/google-map.service';
 
 @Component({
     selector: 'app-map',

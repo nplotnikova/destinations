@@ -1,4 +1,4 @@
-type CityShortInfo = Pick<City, 'name' | 'image'>;
+export type CityShortInfo = Pick<City, 'name' | 'image'>;
 
 export class City {
     continent: string;

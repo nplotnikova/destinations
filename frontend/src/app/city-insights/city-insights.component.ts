@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { City } from '@models/city';
-
-import { CityService } from '@providers/city.service';
-
 import { catchError, Observable, of } from 'rxjs';
+import { City } from '../models/city';
+import { CityService } from '../providers/city.service';
 
 @Component({
     selector: 'app-city-insights',
