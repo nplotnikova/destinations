@@ -21,7 +21,7 @@ $ npm --version
 ### 1. Clone project
 
 ```shell script
-$ git clone https://github.com/ORG/PROJECT.git
+$ git clone git@github.com:nplotnikova/destinations.git
 $ cd destinations
 ```
 
@@ -31,19 +31,30 @@ $ cd destinations
 $ npm run install-dependencies
 ```
 
-
 ### 3. Start & watch
 
 ```shell script
 $ npm run develop
 ```
 
-[//]: # ()
-[//]: # (### Simple build for production)
+The frontend is running on  `http://localhost:4200/`. The app will automatically reload if you change
+any of the source files.
 
-[//]: # ()
-[//]: # (```shell script)
+The backend is running on `http://localhost:3000/` and is available under `http://localhost:3000/api/`.
+It has two endpoints:
+* `http://localhost:3000/api/cities`
+* `http://localhost:3000/api/cities/{city_name}`
 
-[//]: # ($ npm run develop)
+### 4. Simple build for production
+Please ensure that `frontend/src/environments/environment.prod.ts` contains valid `GOOGLE_MAPS_API_KEY` value. 
 
-[//]: # (```)
+```shell script
+$ npm run production
+```
+
+### 5. Run tests
+
+```shell script
+$ npm run test:frontend
+$ npm run test:backend
+```
