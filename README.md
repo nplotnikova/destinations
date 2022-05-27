@@ -1,4 +1,4 @@
-# Destinations
+# ✈️ Destinations
 
 SPA that displays information about some trip destinations.
 
@@ -46,7 +46,7 @@ It has two endpoints:
 * `http://localhost:3000/api/cities/{city_name}`
 
 ### 4. Simple build for production
-Please ensure that `frontend/src/environments/environment.prod.ts` contains valid `GOOGLE_MAPS_API_KEY` value. 
+⚠️ Please ensure that `frontend/src/environments/environment.prod.ts` contains valid `GOOGLE_MAPS_API_KEY` value.
 
 ```shell script
 $ npm run production
