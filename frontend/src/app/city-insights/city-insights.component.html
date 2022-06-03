@@ -27,6 +27,12 @@
              [lng]="city.longitude"
              [landmarks]="city.landmarks">
     </app-map>
+
+    <p class="my-3 text-end" *ngIf="city.name.toLowerCase() !== 'Madrid'.toLowerCase()">
+        Would you like to explore
+        <a class="mt-3" routerLink="/city/Madrid">Madrid</a>
+        as well?
+    </p>
 </ng-container>
 
 <ng-template #loadingTemplate>

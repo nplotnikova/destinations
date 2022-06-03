@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ModuleRoutes } from '@app/app-routing.config';
 import { AppComponent } from '@app/app.component';
 import { CityListComponent } from '@app/city-list/city-list.component';
+import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.component';
 
 import { CoreModule } from '@core/core.module';
 
@@ -16,6 +17,7 @@ import { CoreModule } from '@core/core.module';
     declarations: [
         AppComponent,
         CityListComponent,
+        PageNotFoundComponent
     ],
     imports: [
         RouterModule.forRoot(ModuleRoutes),

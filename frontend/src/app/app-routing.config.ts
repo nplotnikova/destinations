@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { CityListComponent } from '@app/city-list/city-list.component';
-import { PageNotFoundComponent } from '@core/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.component';
 
 export const ModuleRoutes: Routes = [
     {

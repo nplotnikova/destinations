@@ -21,8 +21,8 @@ export class CityInsightsComponent implements OnInit, OnDestroy {
                 private cityService: CityService) {}
 
     ngOnInit(): void {
-        this.paramsSubscription = this.route.params.subscribe(param => {
-            const cityName = param['name'];
+        this.paramsSubscription = this.route.params.subscribe(params => {
+            const cityName = params?.hasOwnProperty('name') && params['name'];
             if (!cityName) {
                 return;
             }

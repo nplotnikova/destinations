@@ -3,13 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { BreadcrumbsComponent } from '@core/breadcrumbs/breadcrumbs.component';
-import { PageNotFoundComponent } from '@core/page-not-found/page-not-found.component';
 
 
 @NgModule({
     declarations: [
         BreadcrumbsComponent,
-        PageNotFoundComponent
     ],
     imports: [
         CommonModule,
