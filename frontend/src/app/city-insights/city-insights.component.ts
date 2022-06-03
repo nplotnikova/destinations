@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable, of, Subscription } from 'rxjs';
 import { City } from '../models/city';
 import { CityService } from '../providers/city.service';
 
@@ -11,20 +11,31 @@ import { CityService } from '../providers/city.service';
     styleUrls: ['./city-insights.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CityInsightsComponent implements OnInit {
+export class CityInsightsComponent implements OnInit, OnDestroy {
 
     public city$!: Observable<City>;
+    private paramsSubscription!: Subscription;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private cityService: CityService) {}
 
     ngOnInit(): void {
-        const name = this.route.snapshot.paramMap.get('name');
-        if (!name) {
-            return;
-        }
+        this.paramsSubscription = this.route.params.subscribe(param => {
+            const cityName = param['name'];
+            if (!cityName) {
+                return;
+            }
 
+            this.fetchCity(cityName);
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.paramsSubscription?.unsubscribe();
+    }
+
+    private fetchCity(name: string): void {
         this.city$ = this.cityService.getOne(name).pipe(
             catchError(error => {
                 this.router.navigate(['404'], { skipLocationChange: true }).then();
