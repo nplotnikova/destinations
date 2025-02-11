@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withJsonpSupport } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,24 +13,15 @@ import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.compon
 import { CoreModule } from '@core/core.module';
 
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         CityListComponent,
         PageNotFoundComponent
     ],
-    imports: [
-        RouterModule.forRoot(ModuleRoutes),
+    bootstrap: [AppComponent], imports: [RouterModule.forRoot(ModuleRoutes),
         BrowserAnimationsModule,
         BrowserModule,
         CommonModule,
-        CoreModule,
-
-        HttpClientModule,
-        HttpClientJsonpModule,
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
-})
+        CoreModule], providers: [provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())] })
 export class AppModule {
 }

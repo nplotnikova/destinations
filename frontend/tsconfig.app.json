@@ -1,43 +1,27 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "outDir": "./out-tsc/app",
-        "typeRoots": [ "node_modules/@types" ],
-        "types": [ "node" ],
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "sourceMap": true,
-        "declaration": false,
-        "emitDecoratorMetadata": false,
-        "experimentalDecorators": true,
-        "allowSyntheticDefaultImports": true,
-        "paths": {
-            "@app/*": [
-                "src/app/*"
-            ],
-            "@core/*": [
-                "src/app/core/*"
-            ],
-            "@envs/*": [
-                "src/environments/*"
-            ],
-            "@models/*": [
-                "src/app/models/*"
-            ],
-            "@providers/*": [
-                "src/app/providers/*"
-            ],
-            "@shared/*": [
-                "src/app/shared/*"
-            ]
-        }
-    },
-    "files": [
-        "src/main.ts",
-        "src/polyfills.ts"
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "typeRoots": [
+      "node_modules/@types"
     ],
-    "include": [
-        "src/**/*.d.ts"
-    ]
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "declaration": false,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
 }
