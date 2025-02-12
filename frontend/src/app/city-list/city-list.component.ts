@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+
 import { CityShortInfo } from '@models/city';
+
 import { CityService } from '@providers/city.service';
+
 import { catchError, Observable, of } from 'rxjs';
 
 @Component({

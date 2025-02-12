@@ -2,11 +2,11 @@
     <div class="container">
         <ol class="breadcrumb py-3">
             <ng-container *ngIf="cityBreadcrumb; else homePageTemplate">
-                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <li class="breadcrumb-item"><a routerLink="/">Destinations</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ cityBreadcrumb }}</li>
             </ng-container>
             <ng-template #homePageTemplate>
-                <li class="breadcrumb-item active" aria-current="page">Home</li>
+                <li class="breadcrumb-item active" aria-current="page">Destinations</li>
             </ng-template>
         </ol>
     </div>

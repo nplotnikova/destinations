@@ -2,8 +2,10 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { catchError, Observable, of, Subscription } from 'rxjs';
-import { City } from '../models/city';
-import { CityService } from '../providers/city.service';
+
+import { City } from '@models/city';
+
+import { CityService } from '@providers/city.service';
 
 @Component({
     selector: 'app-city-insights',

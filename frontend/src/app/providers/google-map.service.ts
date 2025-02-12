@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, shareReplay } from 'rxjs';
-import { environment } from '../../environments/environment';
+
+import {catchError, map, Observable, of, shareReplay} from 'rxjs';
+
+import { environment } from '@envs/environment';
 
 @Injectable({
     providedIn: 'root',

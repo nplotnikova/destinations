@@ -1,14 +1,23 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Input,
+    ViewChild
+} from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+
 import { filter, finalize, Observable, Subject, zip } from 'rxjs';
-import { GoogleMapService } from '../../providers/google-map.service';
+
+import { GoogleMapService } from '@providers/google-map.service';
 
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements AfterViewInit {
 
     private readonly ZOOM = 12;
     private readonly MIN_ZOOM = 10;
@@ -22,14 +31,14 @@ export class MapComponent implements OnInit {
     @Input() public landmarks!: string[];
 
     public options!: google.maps.MapOptions;
-    public markers$!: Observable<google.maps.MarkerOptions[]>;
+    public markers$!: Observable<google.maps.marker.AdvancedMarkerElementOptions[]>;
     public infoWindowText: string = '';
 
     constructor(public googleMapService: GoogleMapService,
                 private _cdr: ChangeDetectorRef) {
     }
 
-    ngOnInit(): void {
+    ngAfterViewInit(): void {
         this.options = {
             scrollwheel: false,
             disableDoubleClickZoom: true,
@@ -45,7 +54,7 @@ export class MapComponent implements OnInit {
             return;
         }
         const placesService = new google.maps.places.PlacesService(mapRef);
-        const markers$: Observable<google.maps.MarkerOptions>[] = this.landmarks
+        const markers$: Observable<google.maps.marker.AdvancedMarkerElementOptions>[] = this.landmarks
             .filter(Boolean)
             .map(landmarkName => this.getMarker(placesService, landmarkName));
 
@@ -60,8 +69,8 @@ export class MapComponent implements OnInit {
         this.infoWindow.open(mapMarker);
     }
 
-    private createMarker = (place: google.maps.places.PlaceResult): google.maps.MarkerOptions => {
-        return <google.maps.MarkerOptions>{
+    private createMarker = (place: google.maps.places.PlaceResult): google.maps.marker.AdvancedMarkerElementOptions => {
+        return <google.maps.marker.AdvancedMarkerElementOptions>{
             position: {
                 lat: place?.geometry?.location?.lat(),
                 lng: place?.geometry?.location?.lng(),
@@ -71,8 +80,8 @@ export class MapComponent implements OnInit {
         };
     };
 
-    private getMarker(placesService: google.maps.places.PlacesService, landmarkName: string): Subject<google.maps.MarkerOptions> {
-        const marker$ = new Subject<google.maps.MarkerOptions>();
+    private getMarker(placesService: google.maps.places.PlacesService, landmarkName: string): Subject<google.maps.marker.AdvancedMarkerElementOptions> {
+        const marker$ = new Subject<google.maps.marker.AdvancedMarkerElementOptions>();
 
         placesService.textSearch(
             { query: landmarkName },

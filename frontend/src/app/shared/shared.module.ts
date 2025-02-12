@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { MillionPipe } from './pipes/million.pipe';
+
+import { MillionPipe } from '@shared/pipes/million.pipe';
 
 const ModuleComponents = [
     MillionPipe,
