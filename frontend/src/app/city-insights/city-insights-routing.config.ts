@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { CityInsightsComponent } from './city-insights.component';
+import { CityInsightsComponent } from '@app/city-insights/city-insights.component';
 
 export const ModuleRoutes: Routes = [
     {

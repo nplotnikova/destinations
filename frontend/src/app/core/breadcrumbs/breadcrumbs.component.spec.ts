@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+
 import { ReplaySubject } from 'rxjs';
 
-import { BreadcrumbsComponent } from './breadcrumbs.component';
+import { BreadcrumbsComponent } from '@core/breadcrumbs/breadcrumbs.component';
 
 describe('BreadcrumbsComponent', () => {
     let component: BreadcrumbsComponent;
@@ -33,14 +34,14 @@ describe('BreadcrumbsComponent', () => {
     });
 
     describe('First breadcrumb', () => {
-        it('should be equal to `Home`', () => {
+        it('should be equal to `Destinations`', () => {
             eventSubject.next(new NavigationEnd(1, '', ''))
             fixture.detectChanges();
 
             const compiled = fixture.nativeElement as HTMLElement;
             const breadcrumbs = compiled.querySelectorAll('.breadcrumb-item');
             expect(breadcrumbs).toHaveSize(1);
-            expect(breadcrumbs[0]?.textContent).toEqual('Home');
+            expect(breadcrumbs[0]?.textContent).toEqual('Destinations');
         });
     });
 

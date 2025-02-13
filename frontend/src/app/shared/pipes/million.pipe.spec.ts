@@ -1,4 +1,4 @@
-import { MillionPipe } from './million.pipe';
+import { MillionPipe } from '@shared/pipes/million.pipe';
 
 describe('MillionPipe', () => {
 

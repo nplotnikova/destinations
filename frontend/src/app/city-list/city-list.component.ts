@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { CityShortInfo } from '@models/city';
 
@@ -16,8 +16,7 @@ export class CityListComponent implements OnInit {
 
     public cities$!: Observable<CityShortInfo[]>;
 
-    constructor(private cityService: CityService,
-                private _cdr: ChangeDetectorRef) {}
+    constructor(private cityService: CityService) {}
 
     ngOnInit(): void {
         this.cities$ = this.cityService.getAll().pipe(

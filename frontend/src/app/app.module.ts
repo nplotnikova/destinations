@@ -13,15 +13,23 @@ import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.compon
 import { CoreModule } from '@core/core.module';
 
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         AppComponent,
         CityListComponent,
         PageNotFoundComponent
     ],
-    bootstrap: [AppComponent], imports: [RouterModule.forRoot(ModuleRoutes),
+    bootstrap: [AppComponent],
+    imports: [
+        RouterModule.forRoot(ModuleRoutes),
         BrowserAnimationsModule,
         BrowserModule,
         CommonModule,
-        CoreModule], providers: [provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())] })
+        CoreModule
+    ],
+    providers: [
+        provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())
+    ]
+})
 export class AppModule {
 }

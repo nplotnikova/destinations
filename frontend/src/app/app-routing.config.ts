@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { CityListComponent } from '@app/city-list/city-list.component';
 import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.component';
 
