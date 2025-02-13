@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterModule } from "@angular/router";
 
 import { AppComponent } from '@app/app.component';
+import { BreadcrumbsComponent } from "@core/breadcrumbs/breadcrumbs.component";
 
 describe('AppComponent', () => {
     beforeEach(async () => {
@@ -11,6 +12,7 @@ describe('AppComponent', () => {
             ],
             declarations: [
                 AppComponent,
+                BreadcrumbsComponent,
             ],
         }).compileComponents();
     });
