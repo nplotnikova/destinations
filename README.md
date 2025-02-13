@@ -10,10 +10,10 @@ To see if you already have [Node.js](http://nodejs.org/) and [npm](https://npmjs
 
 ```shell script
 $ node --version
-v16.13.0
+v23.7.0
 
 $ npm --version
-8.1.0
+11.1.0
 ```
 
 ## Installation
