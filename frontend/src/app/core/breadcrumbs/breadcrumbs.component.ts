@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { map, Subscription } from 'rxjs';
+import {filter, map, Subject, takeUntil, tap} from 'rxjs';
 
 @Component({
     selector: 'app-breadcrumbs',
@@ -10,25 +10,33 @@ import { map, Subscription } from 'rxjs';
 })
 export class BreadcrumbsComponent implements OnDestroy {
 
-    public cityBreadcrumb?: string;
+    public cityBreadcrumb!: string;
 
-    private routerSubscription?: Subscription;
+    private destroy$ = new Subject<void>();
 
     constructor(
         private router: Router,
         private _cdr: ChangeDetectorRef,
     ) {
-        this.routerSubscription = this.router.events.pipe(
-            map(e => {
-                if (e instanceof NavigationEnd) {
-                    const breadcrumb = e.url.split('/').pop();
-                    this.cityBreadcrumb = breadcrumb && decodeURI(breadcrumb) || breadcrumb;
-                    this._cdr.markForCheck();
-                }
-            })).subscribe();
+        this.router.events.pipe(
+            filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+            map(event => this.extractBreadcrumb(event.url)),
+            tap(breadcrumb => {
+                this.cityBreadcrumb = breadcrumb;
+                this._cdr.markForCheck()
+            }),
+            takeUntil(this.destroy$)
+        ).subscribe();
     }
 
     ngOnDestroy(): void {
-        this.routerSubscription?.unsubscribe();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
+
+    private extractBreadcrumb(url: string): string {
+        const breadcrumb = url.split('/').pop();
+        return breadcrumb ? decodeURI(breadcrumb) : '';
+    }
+
 }
