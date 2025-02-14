@@ -1,7 +1,6 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     Input,
     ViewChild
@@ -34,9 +33,7 @@ export class MapComponent implements AfterViewInit {
     public markers$!: Observable<google.maps.marker.AdvancedMarkerElementOptions[]>;
     public infoWindowText: string = '';
 
-    constructor(public googleMapService: GoogleMapService,
-                private _cdr: ChangeDetectorRef) {
-    }
+    constructor(public googleMapService: GoogleMapService) {}
 
     ngAfterViewInit(): void {
         this.options = {
