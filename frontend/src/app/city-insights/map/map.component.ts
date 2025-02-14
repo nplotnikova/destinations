@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 
-import { filter, finalize, Observable, Subject, zip } from 'rxjs';
+import { filter, forkJoin, Observable, Subject } from 'rxjs';
 
 import { GoogleMapService } from '@providers/google-map.service';
 
@@ -51,6 +51,7 @@ export class MapComponent implements AfterViewInit {
 
     public addMarkers(mapRef: google.maps.Map): void {
         if (!this.landmarks?.length) {
+            console.warn('No landmarks provided to add map markers.');
             return;
         }
         const placesService = new google.maps.places.PlacesService(mapRef);
@@ -58,9 +59,8 @@ export class MapComponent implements AfterViewInit {
             .filter(Boolean)
             .map(landmarkName => this.getMarker(placesService, landmarkName));
 
-        this.markers$ = zip(markers$).pipe(
-            filter(Boolean),
-            finalize(() => this._cdr.detectChanges()),
+        this.markers$ = forkJoin(markers$).pipe(
+            filter(markers => markers?.length > 0),
         );
     }
 
